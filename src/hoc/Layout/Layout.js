@@ -12,30 +12,15 @@ const Layout = props => {
 	
 	const [showSideDrawer, setShowSideDrawer] = useState(false);
 
-	// state ={
-	// 	showSideDrawer: false
-	// }
-
 	const sideDrawerClosedHandler = () =>{
-		// this.setState({showSideDrawer: false})
 		setShowSideDrawer(false);
 	}
 
-	// sideDrawerOpenedHandler = () =>{
-	// 	this.setState({showSideDrawer: true})
-	// }
+	const sideDrawerToggleHandler = () =>{
+	 	setShowSideDrawer( !showSideDrawer );
+	}
 
-	 const sideDrawerToggleHandler = () =>{
-	 	// this.setState( (prevState) => {
-	 	// 	return {showSideDrawer: !prevState.showSideDrawer}
-	 	// })
-	 	
-	 	setShowSideDrawer( prevState => !prevState );
-
-	 }
-
-	// render(){
-		return(
+	return(
 		<Aux>
 			<Toolbar 
 				isAuth={props.ReduxIsAuth}
@@ -50,8 +35,8 @@ const Layout = props => {
 				{props.children}
 			</main>
 		</Aux>
-		)
-	// }
+	)
+	
 };
 
 const mapStateToProps = (state) => {
