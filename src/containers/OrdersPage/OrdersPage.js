@@ -19,77 +19,28 @@ const OrdersPage = (props) => {
 	 useEffect(() => {
 
 		props.onFetchOrders(props.ReduxToken, props.ReduxUserId);
-	// 	axios.get('/orders.json')
-	// 		.then(response => {
-	// 			const fatchedOrders = [];
-	// 			for (let key in response.data){
-	// 				fatchedOrders.push({
-	// 					...response.data[key],
-	// 					id: key
-
-	// 				});
-	// 			}
-	// 			ordersSetHook(fatchedOrders);
-				
-	// 			loadingSetHook(false);
-	// 		})
-	// 		.catch(error => {
-	// 			loadingSetHook(false);
-	// 		});
-
 	 },[]); //like componentDidMount
-	// CLASS BASE
-	// state ={
-	// 	orders: [],
-	// 	loading: true
-	// }
-
-	// componentDidMount() {
-	// 	axios.get('/orders.json')
-	// 		.then(response => {
-	// 			const fatchedOrders = [];
-	// 			for (let key in response.data){
-	// 				fatchedOrders.push({
-	// 					...response.data[key],
-	// 					id: key
-
-	// 				});
-	// 			}
-	// 			this.setState({loading:false, orders: fatchedOrders});
-	// 		})
-	// 		.catch(error => {
-	// 			this.setState({loading:false});
-	// 		});
-	// }
-
-	// render(){
+	
 	let loading = null;
 	if (props.ReduxLoading) {
 		loading = <Spinner/>;
 	}
-	  
-
-		return(
-			<div>
-				{loading}
-				{//this.state.orders.map(order => (
-					
-					props.ReduxOrders.map(order => (
-						<Order 
-							key={order.id}
-							ingredients={order.ingredients}
-							price={order.price}
-						/>
-					))
-				}
-				
-				
-			</div>
-		);
-
-	// }
 	
-
+	return(
+		<div>
+			{loading}
+			{props.ReduxOrders.map(order => (
+					<Order 
+						key={order.id}
+						ingredients={order.ingredients}
+						price={order.price}
+					/>
+				))
+			}
+			
+			
+		</div>
+	);
 }
 
 const mapStateToProps = state => {
