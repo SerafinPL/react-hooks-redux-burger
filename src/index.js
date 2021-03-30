@@ -4,10 +4,31 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import burgerBuilderReducer from './store/reducers/redBurgerBuilder';
+import orderReducer from './store/reducers/redOrder';
+import authReducer from './store/reducers/redAuth';
+import thunk from 'redux-thunk';
+							// REDUX DEV TOOLS ONLY FOR DEVELOPMENT MODE
+const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
+						
+const rootReducer = combineReducers({
+	burgerBuilder: burgerBuilderReducer,
+	order: orderReducer,
+	auth : authReducer
+});
+
+const storeBox = createStore(rootReducer, composeEnhancers( applyMiddleware(thunk) ));
+
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={storeBox}>
+  	
+    	<App />
+    
+  </Provider>,
   document.getElementById('root')
 );
 
