@@ -16,11 +16,13 @@ const OrdersPage = props => {
 	
 	// HOOK BASE
 
-	 useEffect(() => {
+	const {onFetchOrders} = props;
+	
+	useEffect(() => {
 
-		props.onFetchOrders(props.ReduxToken, props.ReduxUserId);
-		// eslint-disable-next-line
-	 },[]); //like componentDidMount
+		onFetchOrders(props.ReduxToken, props.ReduxUserId);
+		
+	},[onFetchOrders]); //like componentDidMount
 	
 	let loading = null;
 	if (props.ReduxLoading) {
