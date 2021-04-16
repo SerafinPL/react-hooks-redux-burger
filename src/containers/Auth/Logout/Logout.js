@@ -9,7 +9,8 @@ const Logout = (props) => {
 	useEffect(() => {
 		props.onLogout();
 		props.ReduxSetIngredients();
-	});
+	// eslint-disable-next-line
+	},[]);
 
 	return(
 		<Redirect to='/auth' />
