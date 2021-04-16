@@ -16,13 +16,13 @@ const OrdersPage = props => {
 	
 	// HOOK BASE
 
-	const {onFetchOrders} = props;
-	
+	const {onFetchOrders, ReduxToken, ReduxUserId} = props;
+
 	useEffect(() => {
 
-		onFetchOrders(props.ReduxToken, props.ReduxUserId);
+		onFetchOrders(ReduxToken, ReduxUserId);
 		
-	},[onFetchOrders]); //like componentDidMount
+	},[onFetchOrders, ReduxToken, ReduxUserId]); //like componentDidMount
 	
 	let loading = null;
 	if (props.ReduxLoading) {

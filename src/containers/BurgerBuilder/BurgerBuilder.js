@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useCallback} from 'react';
 
 
 import Aux from '../../hoc/Aux/Aux';
@@ -11,7 +11,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import axios from '../../axios-orders';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 
-import { connect } from 'react-redux';
+import {useDispatch, useSelector } from 'react-redux';
 //import * as actionTypes from '../../store/actions/actionTypes';
 import * as actionCreators from '../../store/actions/acIndex';
 
@@ -19,8 +19,24 @@ import * as actionCreators from '../../store/actions/acIndex';
 
 const BurgerBuilder = props => {
 	
-	const {ReduxWasBuild, ReduxSetIngredients} = props;
 
+	const dispatch = useDispatch();
+
+	const 	ReduxOnIgredientAdded = (ingName) => dispatch( actionCreators.addIngerdient(ingName) );
+	const	ReduxOnIgredientRemoved = (ingName) => dispatch( actionCreators.removeIngerdient(ingName) );
+	const 	ReduxSetIngredients = useCallback(() => dispatch( actionCreators.initIngridients() ),[dispatch]);
+	const	ReduxOnInitPurchase = () => dispatch( actionCreators.purchaseInit() );
+	const	ReduxChangePath = (path) => dispatch( actionCreators.setAuthRedirectPath(path) );
+
+	const ReduxIngs = useSelector(state => {
+		return state.burgerBuilder.ingredients
+	});
+	const ReduxTotPrice = useSelector(state => state.burgerBuilder.totalPrice)
+	const ReduxError = useSelector(state => state.burgerBuilder.error)
+	const ReduxIsAuth = useSelector(state => state.auth.token !== null)
+	const ReduxWasBuild = useSelector(state => state.burgerBuilder.itWasBuild)
+
+	
 	useEffect(() =>{	
 		if (!ReduxWasBuild){
 			ReduxSetIngredients();
@@ -78,11 +94,11 @@ const BurgerBuilder = props => {
 
 	const purchaseHandler = () => {
 		
-		if (props.ReduxIsAuth){
+		if (ReduxIsAuth){
 			purchasingSet(true);
 				
 		} else {
-			props.ReduxChangePath('/checkout');
+			ReduxChangePath('/checkout');
 			props.history.push('/auth');
 		}
 		
@@ -95,7 +111,7 @@ const BurgerBuilder = props => {
 
 	
 	const continueHandler = () => {
-		props.ReduxOnInitPurchase();
+		ReduxOnInitPurchase();
 		props.history.push('/checkout');
 
 	}
@@ -103,7 +119,7 @@ const BurgerBuilder = props => {
 	//render(){
 
 		const disabledInfo = {
-			...props.ReduxIngs
+			...ReduxIngs
 		};
 
 		for (let key in disabledInfo){
@@ -112,30 +128,30 @@ const BurgerBuilder = props => {
 
 		let orderSummary = null; 
 
-		let burger = props.ReduxError ? <p style={{textAlign: 'center'}}>Składników nie da się załadować</p> : <Spinner />
+		let burger = ReduxError ? <p style={{textAlign: 'center'}}>Składników nie da się załadować</p> : <Spinner />
 
-		if (props.ReduxIngs){
+		if (ReduxIngs){
 	
 
 			burger =(
 				<Aux>
-					<Burger ingredients={props.ReduxIngs}/>
+					<Burger ingredients={ReduxIngs}/>
 						<BuildControls 
-							ingredientAdded={props.ReduxOnIgredientAdded}
-							ingredientRemove={props.ReduxOnIgredientRemoved}
+							ingredientAdded={ReduxOnIgredientAdded}
+							ingredientRemove={ReduxOnIgredientRemoved}
 							disabled={disabledInfo}
-							purchasable={updatePurchaseState(props.ReduxIngs)}
-							isAuth={props.ReduxIsAuth}
-							price={props.ReduxTotPrice}
+							purchasable={updatePurchaseState(ReduxIngs)}
+							isAuth={ReduxIsAuth}
+							price={ReduxTotPrice}
 							ordered={purchaseHandler}
 						/>
 				</Aux>
 			);
 			orderSummary = <OrderSummary 
-							ingredients={props.ReduxIngs}
+							ingredients={ReduxIngs}
 							purchaseCanceled={purchaseCancelHandler}
 							purchaseContinue={continueHandler}
-							price={props.ReduxTotPrice}
+							price={ReduxTotPrice}
 						/>;
 
 				
@@ -156,29 +172,7 @@ const BurgerBuilder = props => {
 	//}
 }
 
-const mapStateToProps = state => {
-	return{
-		ReduxIngs: state.burgerBuilder.ingredients,
-		ReduxTotPrice: state.burgerBuilder.totalPrice,
-		ReduxError: state.burgerBuilder.error,
-		ReduxIsAuth: state.auth.token !== null,
-		ReduxWasBuild: state.burgerBuilder.itWasBuild
-
-	};
-};
-
-const mapDispachToProps = dispatch => {
-	return{
-		
-		ReduxOnIgredientAdded: (ingName) => dispatch( actionCreators.addIngerdient(ingName) ),
-		//{type: actionTypes.ADD_INGREDIENT, ingredientName: ingName}),
-		ReduxOnIgredientRemoved: (ingName) => dispatch( actionCreators.removeIngerdient(ingName) ),
-		//{type: actionTypes.REMOVE_INGREDIENT, ingredientName: ingName})
-		ReduxSetIngredients: () => dispatch( actionCreators.initIngridients() ),
-		ReduxOnInitPurchase: () => dispatch( actionCreators.purchaseInit() ),
-		ReduxChangePath: (path) => dispatch(actionCreators.setAuthRedirectPath(path))
-	};
-};
 
 
-export default connect(mapStateToProps, mapDispachToProps)( withErrorHandler(BurgerBuilder, axios) );
+
+export default withErrorHandler(BurgerBuilder, axios) ;
