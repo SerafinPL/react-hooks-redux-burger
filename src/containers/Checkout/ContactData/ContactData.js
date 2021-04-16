@@ -8,7 +8,7 @@ import Input from '../../../components/UI/Input/Input';
 
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 
-import {connect} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import * as actionCreators from '../../../store/actions/acIndex';
 
 import {updateObject, checkValidtity} from '../../../shared/utility';
@@ -118,39 +118,41 @@ const ContactData = props => {
 				valid: true,
 				
 			}
-		});//orderFormState
+		});//orderForm
 		
 		const [formIsValid, setFormIsValid] = useState(false);
+
+		const dispatch = useDispatch();
+
+		const onOrderBurger = (orderData, token) => dispatch( actionCreators.purchaseBurgerStart(orderData, token) );
+		const ReduxSetIngredients = () => dispatch( actionCreators.initIngridients() );
+
+		const ReduxIngs = useSelector(state => state.burgerBuilder.ingredients);
+		const ReduxTotPrice = useSelector(state => state.burgerBuilder.totalPrice);
+		const ReduxLoading = useSelector(state => state.order.loading);
+		const ReduxToken = useSelector(state => state.auth.token);
+		const ReduxUserId = useSelector(state => state.auth.userId);
 
 	
 
 	const orderHandler = (event) => {
 		event.preventDefault();
-			//this.setState({loading: true});
-			
-			const dataForm = {};
-			for (let formElementId in orderForm){
-				dataForm[formElementId] = orderForm[formElementId].value;
-			}
-			
+						
+		const dataForm = {};
+		for (let formElementId in orderForm){
+			dataForm[formElementId] = orderForm[formElementId].value;
+		}
+		
 
-			const order = {
-				ingredients: props.ReduxIngs,
-				price: props.ReduxTotPrice,
-				orderData: dataForm,
-				userId: props.ReduxUserId
-				
-			}
-			props.onOrderBurger(order, props.ReduxToken);
-			props.ReduxSetIngredients();
-			// axios.post('/orders.json', order)
-			// 	.then(response => {
-			// 		this.setState({loading: false});
-			// 		this.props.history.push('/');
-			// 	} )
-			// 	.catch(error => {
-			// 		this.setState({loading: false});
-			// 	} );
+		const order = {
+			ingredients: ReduxIngs,
+			price: ReduxTotPrice,
+			orderData: dataForm,
+			userId: ReduxUserId
+			
+		}
+		onOrderBurger(order, ReduxToken);
+		ReduxSetIngredients();
 	}
 
 	
@@ -189,29 +191,29 @@ const ContactData = props => {
 
 	let form = (
 		
-				<form onSubmit={orderHandler}>
-					
-					{formElementArr.map(formElement => (
-							<Input 
-								key={formElement.id}
-								elementType={formElement.config.elementType}
-								elementConfig={formElement.config.elementConfig}
-								value={formElement.config.value}
-								invalid={!formElement.config.valid}
-								shouldValidate={formElement.config.validation}
-								touched={formElement.config.touched}
-								changed={(event) => inputChangeHandler(event, formElement.id)}
-								label={formElement.config.label}
+			<form onSubmit={orderHandler}>
+				
+				{formElementArr.map(formElement => (
+						<Input 
+							key={formElement.id}
+							elementType={formElement.config.elementType}
+							elementConfig={formElement.config.elementConfig}
+							value={formElement.config.value}
+							invalid={!formElement.config.valid}
+							shouldValidate={formElement.config.validation}
+							touched={formElement.config.touched}
+							changed={(event) => inputChangeHandler(event, formElement.id)}
+							label={formElement.config.label}
 
-							/>
-						))
-					}
-					
-					<Button btnType="Success" disabled={!formIsValid}>Zamów</Button>
-				</form>
+						/>
+					))
+				}
+				
+				<Button btnType="Success" disabled={!formIsValid}>Zamów</Button>
+			</form>
 				);
 
-	if (props.ReduxLoading){
+	if (ReduxLoading){
 		form = (<Spinner/>);
 	}
 
@@ -225,22 +227,4 @@ const ContactData = props => {
 	
 }
 	
-const mapStateToProps = state => {
-	return{
-		ReduxIngs: state.burgerBuilder.ingredients,
-		ReduxTotPrice: state.burgerBuilder.totalPrice,
-		ReduxLoading: state.order.loading,
-		ReduxToken: state.auth.token,
-		ReduxUserId: state.auth.userId
-	};
-};
-
-const mapDispatchToProps = dispatch => {
-	return{
-		onOrderBurger: (orderData, token) => dispatch( actionCreators.purchaseBurgerStart(orderData, token) ),
-		ReduxSetIngredients: () => dispatch( actionCreators.initIngridients() ),
-		
-	};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, axios));
+export default withErrorHandler(ContactData, axios);
