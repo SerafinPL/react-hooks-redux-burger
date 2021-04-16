@@ -31,10 +31,10 @@ const BurgerBuilder = props => {
 	const ReduxIngs = useSelector(state => {
 		return state.burgerBuilder.ingredients
 	});
-	const ReduxTotPrice = useSelector(state => state.burgerBuilder.totalPrice)
-	const ReduxError = useSelector(state => state.burgerBuilder.error)
-	const ReduxIsAuth = useSelector(state => state.auth.token !== null)
-	const ReduxWasBuild = useSelector(state => state.burgerBuilder.itWasBuild)
+	const ReduxTotPrice = useSelector(state => state.burgerBuilder.totalPrice);
+	const ReduxError = useSelector(state => state.burgerBuilder.error);
+	const ReduxIsAuth = useSelector(state => state.auth.token !== null);
+	const ReduxWasBuild = useSelector(state => state.burgerBuilder.itWasBuild);
 
 	
 	useEffect(() =>{	

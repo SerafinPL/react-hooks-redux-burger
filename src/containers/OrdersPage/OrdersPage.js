@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useCallback} from 'react';
 
 import Order from '../../components/Order/Order';
 import axios from '../../axios-orders';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import * as actionCreators from '../../store/actions/acIndex';
 
 // class OrdersPage extends Component{
@@ -16,7 +16,16 @@ const OrdersPage = props => {
 	
 	// HOOK BASE
 
-	const {onFetchOrders, ReduxToken, ReduxUserId} = props;
+	const dispatch = useDispatch();
+
+	const onFetchOrders = useCallback( (token, userId) => dispatch( actionCreators.fetchOrders(token, userId) ) , [dispatch]);
+
+	const ReduxLoading = useSelector(state => state.order.loading);
+	const ReduxOrders = useSelector(state => state.order.orders);
+	const ReduxToken = useSelector(state => state.auth.token);
+	const ReduxUserId = useSelector(state => state.auth.userId);
+
+	
 
 	useEffect(() => {
 
@@ -25,14 +34,14 @@ const OrdersPage = props => {
 	},[onFetchOrders, ReduxToken, ReduxUserId]); //like componentDidMount
 	
 	let loading = null;
-	if (props.ReduxLoading) {
+	if (ReduxLoading) {
 		loading = <Spinner/>;
 	}
 	
 	return(
 		<div>
 			{loading}
-			{props.ReduxOrders.map(order => (
+			{ReduxOrders.map(order => (
 					<Order 
 						key={order.id}
 						ingredients={order.ingredients}
@@ -46,20 +55,4 @@ const OrdersPage = props => {
 	);
 }
 
-const mapStateToProps = state => {
-	return{
-		ReduxError: state.order.error,
-		ReduxLoading: state.order.loading,
-		ReduxOrders: state.order.orders,
-		ReduxToken: state.auth.token,
-		ReduxUserId: state.auth.userId
-	};
-};
-
-const mapDispachToProps = dispach => {
-	return{
-		onFetchOrders: (token, userId) => dispach(actionCreators.fetchOrders(token, userId)) 
-	};
-};
-
-export default connect(mapStateToProps, mapDispachToProps)( withErrorHandler(OrdersPage, axios) );
+export default withErrorHandler(OrdersPage, axios) ;
