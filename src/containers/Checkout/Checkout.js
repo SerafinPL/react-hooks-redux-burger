@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 
 
-const Checkout = (props) => {
+const Checkout = props => {
 
 	
 

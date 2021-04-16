@@ -10,7 +10,7 @@ import * as actionCreators from '../../store/actions/acIndex';
 
 // class OrdersPage extends Component{
 
-const OrdersPage = (props) => {
+const OrdersPage = props => {
 	// const [loadingHook, loadingSetHook] = useState(true);
 	// const [ordersHook, ordersSetHook] = useState([]);
 	
@@ -19,6 +19,7 @@ const OrdersPage = (props) => {
 	 useEffect(() => {
 
 		props.onFetchOrders(props.ReduxToken, props.ReduxUserId);
+		// eslint-disable-next-line
 	 },[]); //like componentDidMount
 	
 	let loading = null;

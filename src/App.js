@@ -1,10 +1,10 @@
-import React, { useState, useEffect, Suspense} from 'react' ;
+import React, { useEffect, Suspense} from 'react' ;
 
 import Layout from './hoc/Layout/Layout';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 
 
-import {Route, BrowserRouter, Switch, withRouter, Redirect} from 'react-router-dom';
+import {Route, BrowserRouter, Switch, Redirect} from 'react-router-dom';
 
 
 
@@ -30,6 +30,7 @@ const App = (props) => {
 		// 	setTestState(false)
 		// },5000);
 		//return () => {} //componentWillUnmount
+		// eslint-disable-next-line
 	}, []);  
 
 	let route = (
@@ -53,9 +54,9 @@ const App = (props) => {
 			<Switch>
 				
 				<Route path='/orders' exact component={OrdersPage} 
-					// render={() => (
+					// render={(props) => (
 					// 		<Suspense fallback={<Spinner/>}>
-					// 			<OrdersPage/>
+					// 			<OrdersPage {...props}/>
 					// 		</Suspense>
 					// 	)}
 				/>

@@ -23,6 +23,7 @@ const BurgerBuilder = (props) => {
 		if (!props.ReduxWasBuild){
 			props.ReduxSetIngredients();
 		}
+		// eslint-disable-next-line
 	},[]); // like componentDidMount
 	// componentDidMount() {
 	// 		this.props.ReduxSetIngredients();
