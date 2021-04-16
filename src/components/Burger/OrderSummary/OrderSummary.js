@@ -40,7 +40,7 @@ const OrderSummary = props => {
 			<Button btnType='Danger' clicked={props.purchaseCanceled}>ANULUJ</Button>
 			<Button btnType='Success' clicked={props.purchaseContinue} >KONTYNUUJ</Button>
 		</Aux>
-	)
+	);
 	
 };
 
