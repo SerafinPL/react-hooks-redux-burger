@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense} from 'react' ;
+import React, { useEffect, Suspense, useCallback} from 'react' ;
 
 import Layout from './hoc/Layout/Layout';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
@@ -8,7 +8,7 @@ import {Route, BrowserRouter, Switch, Redirect} from 'react-router-dom';
 
 
 
-import {connect} from 'react-redux';
+import {connect, useSelector, useDispatch} from 'react-redux';
 import * as actions from './store/actions/acIndex';
 
 import Spinner from './components/UI/Spinner/Spinner';
@@ -20,9 +20,15 @@ const Logout = React.lazy( () => import('./containers/Auth/Logout/Logout') );
 
 const App = (props) => {
 
+	const RedAuth = useSelector(state => state.auth.token !== null); 
+
+	const dispatch = useDispatch();
+
+	const authCheckState = useCallback(() => dispatch(actions.authCheckState()) ,[dispatch]);
+
 	//const [testState, setTestState] = useState(true);
 
-	const {authCheckState, RedAuth} = props;
+	
 
 	useEffect(() =>{	//it is componentDidMount
 		if (!RedAuth) {
