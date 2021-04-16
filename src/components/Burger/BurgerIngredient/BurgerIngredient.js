@@ -4,7 +4,7 @@ import classes from './BurgerIngredient.module.css';
 
 import PropTypes from 'prop-types';
 
-const burgerIngredient = (props) => {
+const burgerIngredient = props => {
 
 	let ingredient = null;
 
