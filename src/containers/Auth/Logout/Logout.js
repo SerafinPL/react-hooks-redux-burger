@@ -6,11 +6,13 @@ import * as actionCreators from '../../../store/actions/acIndex';
 
 const Logout = (props) => {
 
+	const {onLogout, ReduxSetIngredients} = props;
+
 	useEffect(() => {
-		props.onLogout();
-		props.ReduxSetIngredients();
-	// eslint-disable-next-line
-	},[]);
+		onLogout();
+		ReduxSetIngredients();
+	
+	},[onLogout, ReduxSetIngredients]);
 
 	return(
 		<Redirect to='/auth' />

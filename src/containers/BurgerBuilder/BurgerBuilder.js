@@ -19,12 +19,13 @@ import * as actionCreators from '../../store/actions/acIndex';
 
 const BurgerBuilder = props => {
 	
+	const {ReduxWasBuild, ReduxSetIngredients} = props;
+
 	useEffect(() =>{	
-		if (!props.ReduxWasBuild){
-			props.ReduxSetIngredients();
+		if (!ReduxWasBuild){
+			ReduxSetIngredients();
 		}
-		// eslint-disable-next-line
-	},[]); // like componentDidMount
+	},[ReduxWasBuild, ReduxSetIngredients]); // like componentDidMount
 	// componentDidMount() {
 	// 		this.props.ReduxSetIngredients();
 		// axios.get('/ingredients.json')

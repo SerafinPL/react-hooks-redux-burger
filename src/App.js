@@ -22,16 +22,18 @@ const App = (props) => {
 
 	//const [testState, setTestState] = useState(true);
 
+	const {authCheckState, RedAuth} = props;
+
 	useEffect(() =>{	//it is componentDidMount
-		if (!props.RedAuth) {
-			props.authCheckState();
+		if (!RedAuth) {
+			authCheckState();
 		}
 		// setTimeout(() => {
 		// 	setTestState(false)
 		// },5000);
 		//return () => {} //componentWillUnmount
-		// eslint-disable-next-line
-	}, []);  
+		
+	}, [authCheckState, RedAuth]);  
 
 	let route = (
 			<Switch>

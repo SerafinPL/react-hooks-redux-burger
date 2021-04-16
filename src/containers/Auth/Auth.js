@@ -48,12 +48,14 @@ const Auth = props => {
 	}); // controls:
 	const [isSignup, setIsSignup] = useState(true);
 
+	const {redBurgerWasBuild, redPathToRedirect, ReduxSetAuthRedirectPath} = props;
+
 	useEffect(() => {
-		if (!props.redBurgerWasBuild && props.redPathToRedirect !== '/') {
-	 		props.ReduxSetAuthRedirectPath();
+		if (!redBurgerWasBuild && redPathToRedirect !== '/') {
+	 		ReduxSetAuthRedirectPath();
 	 	}
-	 	// eslint-disable-next-line
-	}, []);
+	 	
+	}, [redBurgerWasBuild, redPathToRedirect, ReduxSetAuthRedirectPath]);
 	// componentDidMount() {
 	// 	if (!this.props.redBurgerWasBuild && this.props.redPathToRedirect !== '/') {
 	// 		this.props.ReduxSetAuthRedirectPath();
