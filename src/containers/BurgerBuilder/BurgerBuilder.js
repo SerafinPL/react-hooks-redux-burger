@@ -17,7 +17,7 @@ import * as actionCreators from '../../store/actions/acIndex';
 
 
 
-const BurgerBuilder = (props) => {
+const BurgerBuilder = props => {
 	
 	useEffect(() =>{	
 		if (!props.ReduxWasBuild){
@@ -76,19 +76,19 @@ const BurgerBuilder = (props) => {
 	}
 
 	const purchaseHandler = () => {
-		let pur = false;
+		
 		if (props.ReduxIsAuth){
-			pur = true;
-			//this.setState({purchasing: true});	
+			purchasingSet(true);
+				
 		} else {
 			props.ReduxChangePath('/checkout');
 			props.history.push('/auth');
 		}
-		purchasingSet(pur);
+		
 	}
 
 	const purchaseCancelHandler = () => {
-		//this.setState({purchasing: false});
+		
 		purchasingSet(false);
 	}
 
@@ -123,7 +123,7 @@ const BurgerBuilder = (props) => {
 							ingredientAdded={props.ReduxOnIgredientAdded}
 							ingredientRemove={props.ReduxOnIgredientRemoved}
 							disabled={disabledInfo}
-							purchasable={updatePurchaseState(/*this.*/props.ReduxIngs)}
+							purchasable={updatePurchaseState(props.ReduxIngs)}
 							isAuth={props.ReduxIsAuth}
 							price={props.ReduxTotPrice}
 							ordered={purchaseHandler}
