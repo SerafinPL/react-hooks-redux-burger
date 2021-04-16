@@ -8,7 +8,7 @@ import {Route, BrowserRouter, Switch, Redirect} from 'react-router-dom';
 
 
 
-import {connect, useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
 import * as actions from './store/actions/acIndex';
 
 import Spinner from './components/UI/Spinner/Spinner';
@@ -56,7 +56,7 @@ const App = (props) => {
 	        </Switch>
 		);
 
-	if (props.RedAuth) {
+	if (RedAuth) {
 		route = (
 		<Suspense fallback={<Spinner/>}>
 			<Switch>
@@ -112,16 +112,5 @@ const App = (props) => {
   );
 }
 
-const mapStateToProps = state => {
-	return{
-		RedAuth: state.auth.token !== null
-	};
-};
 
-const mapDispatchToProps = dispatch => {
-	return{
-		authCheckState: () => dispatch(actions.authCheckState()),
-
-	};
-};
-export default /*withRouter(*/connect(mapStateToProps, mapDispatchToProps)(App)/*)*/; // withRouter for route problems with connect
+export default /*withRouter(*/App/*)*/; // withRouter for route problems with connect

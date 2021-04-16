@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
@@ -7,7 +7,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import classes from './Auth.module.css';
 
 import * as actions from '../../store/actions/acIndex';
-import {connect} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 
 import {Redirect} from 'react-router-dom';
 
@@ -15,6 +15,18 @@ import { updateObject, checkValidtity } from '../../shared/utility';
 
 //class Auth extends Component {
 const Auth = props => {
+
+
+	const dispatch = useDispatch();
+
+	const onAuth = (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup));
+	const ReduxSetAuthRedirectPath = useCallback( () => dispatch(actions.setAuthRedirectPath('/')) ,[dispatch]);
+
+	const redLoading = useSelector(state => state.auth.loading);
+	const redError = useSelector(state => state.auth.error);
+	const redAuth = useSelector(state => state.auth.token !== null);
+	const redPathToRedirect = useSelector(state => state.auth.pathToRedirect);
+	const redBurgerWasBuild = useSelector(state => state.burgerBuilder.itWasBuild);
 	
 	const [controls, setControls] = useState({
 		email: {
@@ -47,8 +59,6 @@ const Auth = props => {
 		}
 	}); // controls:
 	const [isSignup, setIsSignup] = useState(true);
-
-	const {redBurgerWasBuild, redPathToRedirect, ReduxSetAuthRedirectPath} = props;
 
 	useEffect(() => {
 		if (!redBurgerWasBuild && redPathToRedirect !== '/') {
@@ -98,7 +108,7 @@ const Auth = props => {
 
 	const submitHandler = (event) => {
 		event.preventDefault();
-		props.onAuth(controls.email.value, controls.password.value, isSignup);
+		onAuth(controls.email.value, controls.password.value, isSignup);
 
 
 	}
@@ -135,30 +145,30 @@ const Auth = props => {
 	));
 
 	let authRedirect = null;
-	if (props.redAuth){
+	if (redAuth){
 		authRedirect = <Redirect to={props.redPathToRedirect} />;
 	};
 
-	if (props.redLoading) {
+	if (redLoading) {
 		form = <Spinner/>;
 	};
 
 	let errorMessage = null;
-	if (props.redError) {
-		if (props.redError.response){
+	if (redError) {
+		if (redError.response){
 
-			switch (props.redError.response.data.error.message ) {
+			switch (redError.response.data.error.message ) {
 				case 'EMAIL_NOT_FOUND': errorMessage = <p>E-mail nie odnaleziony</p>;
 				break;
 				case 'INVALID_PASSWORD': errorMessage = <p>Błędne hasło</p>;
 				break;
 				case 'EMAIL_EXISTS': errorMessage = <p>Jest już konto na podany mail</p>;
 				break;
-				default: errorMessage = <p>{props.redError.response.data.error.message}</p>; 
+				default: errorMessage = <p>{redError.response.data.error.message}</p>; 
 			}//switch
 
 		} else {
-			errorMessage = <p>{props.redError.message}</p>;	
+			errorMessage = <p>{redError.message}</p>;	
 		};
 		
 	};
@@ -182,22 +192,6 @@ const Auth = props => {
 	
 };
 
-const mapStateToProps = state => {
-	return {
-		redLoading: state.auth.loading,
-		redError: state.auth.error,
-		redAuth: state.auth.token !== null,
-		redPathToRedirect: state.auth.pathToRedirect,
-		redBurgerWasBuild: state.burgerBuilder.itWasBuild,
-		
-	};
-};
 
-const mapDispatchToProps = dispatch => {
-	return{
-		onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup)),
-		ReduxSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
-	};
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default Auth;
