@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/react-hooks-redux-burger/static/css/main.2d3a59ee.chunk.css",
+    "main.js": "/react-hooks-redux-burger/static/js/main.4bedf68c.chunk.js",
+    "main.js.map": "/react-hooks-redux-burger/static/js/main.4bedf68c.chunk.js.map",
+    "runtime-main.js": "/react-hooks-redux-burger/static/js/runtime-main.2f233173.js",
+    "runtime-main.js.map": "/react-hooks-redux-burger/static/js/runtime-main.2f233173.js.map",
+    "static/js/2.6da96ffd.chunk.js": "/react-hooks-redux-burger/static/js/2.6da96ffd.chunk.js",
+    "static/js/2.6da96ffd.chunk.js.map": "/react-hooks-redux-burger/static/js/2.6da96ffd.chunk.js.map",
+    "static/css/3.c73b7ee1.chunk.css": "/react-hooks-redux-burger/static/css/3.c73b7ee1.chunk.css",
+    "static/js/3.b8647a28.chunk.js": "/react-hooks-redux-burger/static/js/3.b8647a28.chunk.js",
+    "static/js/3.b8647a28.chunk.js.map": "/react-hooks-redux-burger/static/js/3.b8647a28.chunk.js.map",
+    "static/css/4.4b6f1791.chunk.css": "/react-hooks-redux-burger/static/css/4.4b6f1791.chunk.css",
+    "static/js/4.59669c92.chunk.js": "/react-hooks-redux-burger/static/js/4.59669c92.chunk.js",
+    "static/js/4.59669c92.chunk.js.map": "/react-hooks-redux-burger/static/js/4.59669c92.chunk.js.map",
+    "static/css/5.683b3bfa.chunk.css": "/react-hooks-redux-burger/static/css/5.683b3bfa.chunk.css",
+    "static/js/5.b1df2629.chunk.js": "/react-hooks-redux-burger/static/js/5.b1df2629.chunk.js",
+    "static/js/5.b1df2629.chunk.js.map": "/react-hooks-redux-burger/static/js/5.b1df2629.chunk.js.map",
+    "static/js/6.9f5ab613.chunk.js": "/react-hooks-redux-burger/static/js/6.9f5ab613.chunk.js",
+    "static/js/6.9f5ab613.chunk.js.map": "/react-hooks-redux-burger/static/js/6.9f5ab613.chunk.js.map",
+    "static/js/7.f953b524.chunk.js": "/react-hooks-redux-burger/static/js/7.f953b524.chunk.js",
+    "static/js/7.f953b524.chunk.js.map": "/react-hooks-redux-burger/static/js/7.f953b524.chunk.js.map",
+    "index.html": "/react-hooks-redux-burger/index.html",
+    "static/css/3.c73b7ee1.chunk.css.map": "/react-hooks-redux-burger/static/css/3.c73b7ee1.chunk.css.map",
+    "static/css/4.4b6f1791.chunk.css.map": "/react-hooks-redux-burger/static/css/4.4b6f1791.chunk.css.map",
+    "static/css/5.683b3bfa.chunk.css.map": "/react-hooks-redux-burger/static/css/5.683b3bfa.chunk.css.map",
+    "static/css/main.2d3a59ee.chunk.css.map": "/react-hooks-redux-burger/static/css/main.2d3a59ee.chunk.css.map",
+    "static/js/2.6da96ffd.chunk.js.LICENSE.txt": "/react-hooks-redux-burger/static/js/2.6da96ffd.chunk.js.LICENSE.txt",
+    "static/media/burger-logo.ec69c7f6.png": "/react-hooks-redux-burger/static/media/burger-logo.ec69c7f6.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2f233173.js",
+    "static/js/2.6da96ffd.chunk.js",
+    "static/css/main.2d3a59ee.chunk.css",
+    "static/js/main.4bedf68c.chunk.js"
+  ]
+}

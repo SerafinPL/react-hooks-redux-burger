@@ -1,0 +1,2 @@
+(this["webpackJsonpreact-hooks-burger"]=this["webpackJsonpreact-hooks-burger"]||[]).push([[6],{106:function(t,e,c){"use strict";c.r(e);var u=c(1),r=c(6),n=c(4),a=c(15),s=c(0);e.default=function(t){var e=Object(r.b)(),c=Object(u.useCallback)((function(){return e(a.f())}),[e]),b=Object(u.useCallback)((function(){return e(a.e())}),[e]);return Object(u.useEffect)((function(){c(),b()}),[c,b]),Object(s.jsx)(n.a,{to:"/auth"})}}}]);
+//# sourceMappingURL=6.9f5ab613.chunk.js.map

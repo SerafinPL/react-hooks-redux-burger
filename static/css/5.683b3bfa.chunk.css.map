@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/Order/Order.module.css"],"names":[],"mappings":"AAAA,oBACC,SAAU,CACV,qBAAsB,CACtB,yBAA0B,CAC1B,YAAa,CACb,gBAAiB,CACjB,qBAED","file":"5.683b3bfa.chunk.css","sourcesContent":[".Order{\n\twidth: 80%;\n\tborder: 1px solid #aaa;\n\tbox-shadow: 0 2px 3px #ccc;\n\tpadding: 10px;\n\tmargin: 10px auto;\n\tbox-sizing: border-box;\n\n}"]}
