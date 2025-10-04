@@ -21,4 +21,4 @@
 
 ## Author
 
-- [@SerafinPl](https://www.github.com/serafinpl)
+- [@SerafinPL](https://www.github.com/serafinpl)
