@@ -21,6 +21,6 @@
 ![Static Badge](https://img.shields.io/badge/githubpages-3.1.0-ex?style=plastic&logo=githubpages&logoColor=%23222222&labelColor=fff&color=%23222222)
 ![Static Badge](https://img.shields.io/badge/firebase-api-ex?style=plastic&logo=firebase&logoColor=%23DD2C00&color=%23DD2C00)
 
-## Author
+### Author
 
 - [@SerafinPL](https://www.github.com/serafinpl)
