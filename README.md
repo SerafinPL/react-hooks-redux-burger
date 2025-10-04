@@ -1,11 +1,11 @@
 # Jack the Coder introduce Burger Legacy Project from 2020
 
-## online version: 
-### https://serafinpl.github.io/react-hooks-redux-burger/
-### Login: test123@test.pl
-### pass: test123
+### online version: 
+ https://serafinpl.github.io/react-hooks-redux-burger/
+ Login: test123@test.pl
+ pass: test123
 
-## Stack: 
+### Stack: 
 
 ![Static Badge](https://img.shields.io/badge/linux-mint-xfce?style=plastic&logo=linuxmint)
 ![Static Badge](https://img.shields.io/badge/git_at_-github-ex?style=plastic&logo=git&logoColor=F05032&color=F05032)
