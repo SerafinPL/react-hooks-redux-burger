@@ -1,4 +1,4 @@
-# Jack the Coder introduce Burger Legacy Project from 2020
+## Jack the Coder introduce Burger Legacy Project from 2020
 
 ### online version: 
  https://serafinpl.github.io/react-hooks-redux-burger/
@@ -19,5 +19,6 @@
 ![Static Badge](https://img.shields.io/badge/githubpages-3.1.0-ex?style=plastic&logo=githubpages&logoColor=%23222222&labelColor=fff&color=%23222222)
 ![Static Badge](https://img.shields.io/badge/firebase-api-ex?style=plastic&logo=firebase&logoColor=%23DD2C00&color=%23DD2C00)
 
+## Author
 
-### ReactJs, react-router-dom, axios, redux, gh-pages, FireBase REST API.
+- [@SerafinPl](https://www.github.com/serafinpl)
