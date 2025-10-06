@@ -21,6 +21,11 @@
 ![Static Badge](https://img.shields.io/badge/githubpages-3.1.0-ex?style=plastic&logo=githubpages&logoColor=%23222222&labelColor=fff&color=%23222222)
 ![Static Badge](https://img.shields.io/badge/firebase-api-ex?style=plastic&logo=firebase&logoColor=%23DD2C00&color=%23DD2C00)
 
-### Author
+##
 
-- [@SerafinPL](https://www.github.com/serafinpl)
+![Logo](https://kubakoder.pl/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffavicon.5d6e1adf.png&w=48&q=75)
+### 👨🏻‍💻 Author: [@SerafinPL](https://www.github.com/serafinpl)
+
+### 🌐 Author URI: [http://kubakoder.pl](http://kubakoder.pl)
+
+##
